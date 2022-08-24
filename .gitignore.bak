@@ -3,6 +3,6 @@ Logs/
 Packages/
 UserSettings/
 .vsconfig
-.csproj
-.sln
+*.csproj
+*.sln
 Assembly-CSharp.csproj
