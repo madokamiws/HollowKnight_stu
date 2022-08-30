@@ -6,3 +6,4 @@ UserSettings/
 *.sln
 obj/
 .vs/
+Temp/
