@@ -11,7 +11,24 @@ public class Invincibility : MonoBehaviour
     public int duration;
 
     public bool isInvincibility;
-    public IEnumerable SetInvincibility()
+    private static Invincibility _instance;
+    public static Invincibility Get
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // instance = this ;
+            }
+            return _instance;
+        }
+    }
+    private void Awake()
+    {
+        _instance = this;
+    }
+
+    public IEnumerator SetInvincibility()
     {
         isInvincibility = true;
         for (int i = 0; i < duration; i++)
@@ -20,7 +37,8 @@ public class Invincibility : MonoBehaviour
             render.color = flashColor;
             yield return new WaitForSeconds(0.1f);
             render.color = normalColor;
-            isInvincibility = false;
+
         }
+        isInvincibility = false;
     }
 }

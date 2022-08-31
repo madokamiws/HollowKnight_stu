@@ -20,15 +20,22 @@ public class PlayerController : MonoBehaviour
     float moveX;
     float moveY;
     int moveChangeAni;
+
+    private CinemaShaking cinemaShaking;
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        cinemaShaking = FindObjectOfType<CinemaShaking>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TakeDamage();
+        }
         Movement();
         Jump();
     }
@@ -114,7 +121,11 @@ public class PlayerController : MonoBehaviour
     }
     private void TakeDamage()
     {
-        FindObjectOfType<Health>().Hurt();
+        cinemaShaking.CinemaShake();
+        StartCoroutine(Invincibility.Get.SetInvincibility());
+
+
+        //FindObjectOfType<Health>().Hurt();
         if (isFacingRighrt)
         {
             rigi.velocity = new Vector2(1, 1) * hurtForce;
