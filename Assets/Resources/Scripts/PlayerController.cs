@@ -6,11 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     Vector3 flipperScale = new Vector3(-1, 1, 1);
 
+    //收到伤害的受力方向
+    bool isFacingRighrt;
+
     private Rigidbody2D rigi;
     private Animator animator;
 
     float moveSpeed = 10f;
     float jumpForce = 1f;
+    float hurtForce = 1;
+
     bool isOnGround;
     float moveX;
     float moveY;
@@ -35,10 +40,12 @@ public class PlayerController : MonoBehaviour
         rigi.velocity = new Vector2(moveX*moveSpeed,rigi.velocity.y);
         if (moveX > 0)
         {
+            isFacingRighrt = true;
             moveChangeAni = 1;
         }
         else if(moveX < 0)
         {
+            isFacingRighrt = false;
             moveChangeAni = -1;
         }
         else
@@ -104,5 +111,17 @@ public class PlayerController : MonoBehaviour
     private void JumpCancel()
     {
         animator.ResetTrigger("Jump_trigger");
+    }
+    private void TakeDamage()
+    {
+        FindObjectOfType<Health>().Hurt();
+        if (isFacingRighrt)
+        {
+            rigi.velocity = new Vector2(1, 1) * hurtForce;
+        }
+        else
+            rigi.velocity = new Vector2(-1, 1) * hurtForce;
+
+        animator.Play("TakeDamage");
     }
 }

@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
         
     }
 
-    private void Hurt()
+    public void Hurt()
     {
         healthItem[0].SetTrigger("Hurt");
     }
