@@ -707,7 +707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &612470981
 Transform:
   m_ObjectHideFlags: 0
@@ -2432,6 +2432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8a59454d70cd446a59462d10d3359a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit_crackObj: {fileID: 612470980}
 --- !u!95 &2132364712
 Animator:
   serializedVersion: 3

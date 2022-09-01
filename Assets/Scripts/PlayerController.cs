@@ -20,8 +20,24 @@ public class PlayerController : MonoBehaviour
     float moveX;
     float moveY;
     int moveChangeAni;
-
+    public GameObject hit_crackObj;
     private CinemaShaking cinemaShaking;
+    private static PlayerController _instance;
+    public static PlayerController Get
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // instance = this ;
+            }
+            return _instance;
+        }
+    }
+    private void Awake()
+    {
+        _instance = this;
+    }
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
@@ -121,6 +137,8 @@ public class PlayerController : MonoBehaviour
     }
     private void TakeDamage()
     {
+        hit_crackObj.SetActive(true);
+        animator.Play("TakeDamage");
         cinemaShaking.CinemaShake();
         StartCoroutine(Invincibility.Get.SetInvincibility());
 
@@ -133,6 +151,5 @@ public class PlayerController : MonoBehaviour
         else
             rigi.velocity = new Vector2(-1, 1) * hurtForce;
 
-        animator.Play("TakeDamage");
     }
 }

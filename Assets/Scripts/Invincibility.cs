@@ -40,5 +40,6 @@ public class Invincibility : MonoBehaviour
 
         }
         isInvincibility = false;
+        //PlayerController.Get.hit_crackObj.SetActive(false);
     }
 }
